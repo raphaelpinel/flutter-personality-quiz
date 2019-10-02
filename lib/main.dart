@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 
-main(List<String> args) {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  void answerQuestion() {
-    print('Answer 2 chosen');
-  }
-
+  void answer1() => print('pressed on answer 1');
   @override
   Widget build(BuildContext context) {
     var questions = [
@@ -18,24 +13,24 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('this is a quizz'),
+          title: Text('Personality Quizz'),
         ),
         body: Column(
           children: <Widget>[
-            Text('The Question'),
+            Text(questions.elementAt(0)),
             RaisedButton(
-              child: Text('Question1'),
-              onPressed: () => print('answer 1 chosen'),
+              child: Text('Answer 1'),
+              onPressed: answer1,
             ),
             RaisedButton(
-              child: Text('Question2'),
-              onPressed: answerQuestion,
+              child: Text('Answer 2'),
+              onPressed: () => print('pressed on answer 2'),
             ),
             RaisedButton(
-              child: Text('Question3'),
+              child: Text('Answer 3'),
               onPressed: () {
-                // ...
-                print('Answer 3 chosen');
+                //...
+                print('pressed on answer 3');
               },
             ),
           ],
