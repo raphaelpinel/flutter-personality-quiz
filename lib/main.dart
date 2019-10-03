@@ -44,12 +44,14 @@ class _MyAppState extends State<MyApp> {
           'Orange'
         ]
       },
-      {'questionText': 'What\'s your favorite animal?', 'answers': [
-        'zebra', 'rabbit', 'snake', 'swan', 'dog'
-      ]},
-      {'questionText': 'what\'s your favorite beverage?', 'answers': [
-        'beer', 'whine', 'tea', 'milk', 'coffee', 'water', 'vodka'
-      ]}
+      {
+        'questionText': 'What\'s your favorite animal?',
+        'answers': ['zebra', 'rabbit', 'snake', 'swan', 'dog']
+      },
+      {
+        'questionText': 'what\'s your favorite beverage?',
+        'answers': ['beer', 'whine', 'tea', 'milk', 'coffee', 'water', 'vodka']
+      }
     ];
 
     return MaterialApp(
@@ -59,7 +61,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: <Widget>[
-            Question(_questions[_questionIndex]),
+            Question(_questions[_questionIndex]['questionText']),
             Container(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -76,9 +78,9 @@ class _MyAppState extends State<MyApp> {
                 ),
               ),
             ),
-            Answer('Answer 1', _answerQuestion),
-            Answer('Answer 2', _answerQuestion),
-            Answer('Answer 3', _answerQuestion),
+            ...(_questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) => Answer(answer, _answerQuestion))
+                .toList(),
           ],
         ),
       ),
