@@ -5,18 +5,28 @@ class Result extends StatelessWidget {
   final Function restartQuiz;
   Result(this.resultScore, this.restartQuiz);
 
-  String get resultPhrase {
-    String resultText;
+  Map<String, Object> get result {
+    String text;
+    Color textColor;
+    Color background;
     if (resultScore <= 8) {
-      resultText = 'You are gentle, pure, quiet and innocent';
+      text = 'You are gentle, pure, quiet and innocent';
+      background = Colors.white;
+      textColor = Colors.pink;
     } else if (resultScore <= 12) {
-      resultText = 'You are pretty likeable, joyful and alive!';
+      text = 'You are pretty likeable, joyful and alive!';
+      background = Colors.orange;
+      textColor = Colors.green;
     } else if (resultScore <= 16) {
-      resultText = 'You can be sometimes nervous, nasty or even strange';
+      text = 'You can be sometimes nervous, nasty or even strange';
+      background = Colors.red;
+      textColor = Colors.white;
     } else {
-      resultText = 'You are wounded, violent, often angry, even sometimes dangerous or destructive';
+      text = 'You are wounded, violent, often angry, even sometimes dangerous or destructive';
+      background = Colors.black;
+      textColor = Colors.red;
     }
-    return resultText;
+    return {'text': text, 'textColor': textColor, 'background': background};
   }
   @override
   Widget build(BuildContext context) {
@@ -24,7 +34,7 @@ class Result extends StatelessWidget {
       child: Container(
         // alignment: Alignment.center,
         
-        color: Colors.orange,
+        color: result['background'],
         width: double.infinity,
         padding: EdgeInsets.all(50),
         child: Column(
@@ -32,10 +42,10 @@ class Result extends StatelessWidget {
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-              resultPhrase,
+              result['text'],
               style: TextStyle(
                   fontSize: 36,
-                  color: Colors.white,
+                  color: result['textColor'],
                   fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                   
