@@ -16,11 +16,6 @@ class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
   var _totalScore = 0;
 
-  final _questions = [
-    'What\'s your favorite color?',
-    'What\'s your favorite animal?',
-  ];
-
   _answerQuestion(int score) {
     setState(() {
       _questionIndex = _questionIndex + 1;
@@ -80,7 +75,12 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         backgroundColor: Colors.orange,
           appBar: AppBar(
-            title: Text('Personality Quiz'),
+            title: Column(
+              children: <Widget>[
+                Text('Personality Quiz', style: TextStyle(fontSize: 24),),
+                Text('Find out who you really are', style:TextStyle(fontSize: 14),)
+              ],
+            ),
           ),
           body: _questionIndex < _questions.length
               ? Quiz(
