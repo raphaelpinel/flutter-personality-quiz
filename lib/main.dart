@@ -59,6 +59,7 @@ _restartQuizz() {
     ];
 
     return MaterialApp(
+      theme: ThemeData(primaryColor: Colors.green),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Personality Quizz'),
