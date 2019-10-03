@@ -18,24 +18,8 @@ class Quiz extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Question(questions[questionIndex]['questionText']),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text.rich(
-                TextSpan(text: 'Hello', children: [
-                  TextSpan(
-                      text: ' beautiful ',
-                      style: TextStyle(fontStyle: FontStyle.italic)),
-                  TextSpan(
-                      text: 'world',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                ]),
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-          ),
-          ...(questions[questionIndex]['answers'] as List<String>)
-              .map((answer) => Answer(answer, answerQuestion))
+          ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
+              .map((answer) => Answer(answer['text'], () => answerQuestion(answer['score'])))
               .toList(),
         ],
       ),

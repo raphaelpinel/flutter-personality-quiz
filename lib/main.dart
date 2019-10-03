@@ -14,15 +14,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
   final _questions = [
     'What\'s your favorite color?',
     'What\'s your favorite animal?',
   ];
 
-  _answerQuestion() {
+  _answerQuestion(int score) {
     setState(() {
       _questionIndex = _questionIndex + 1;
+      _totalScore += score;
     });
     print(_questionIndex);
   }
@@ -30,6 +32,7 @@ class _MyAppState extends State<MyApp> {
   _restartQuiz() {
     setState(() {
       _questionIndex = 0;
+      _totalScore = 0;
     });
   }
 
@@ -39,39 +42,53 @@ class _MyAppState extends State<MyApp> {
       {
         'questionText': 'What\'s your favorite color?',
         'answers': [
-          'Blue',
-          'Green',
-          'Purple',
-          'Orange',
-          'Red',
-          'White',
-          'Orange'
+          {'text': 'Blue', 'score': 2},
+          {'text': 'Green', 'score': 3},
+          {'text': 'Purple', 'score': 6},
+          {'text': 'Orange', 'score': 2},
+          {'text': 'Red', 'score': 7},
+          {'text': 'White', 'score': 0},
+          {'text': 'black', 'score': 10},
         ]
       },
       {
         'questionText': 'What\'s your favorite animal?',
-        'answers': ['zebra', 'rabbit', 'snake', 'swan', 'dog']
+        'answers': [
+          {'text': 'spider', 'score': 10}, 
+          {'text': 'rabbit', 'score': 0}, 
+          {'text': 'snake', 'score': 10}, 
+          {'text': 'swan', 'score': 0}, 
+          {'text': 'dog', 'score': 4},
+          ]
       },
       {
         'questionText': 'what\'s your favorite beverage?',
-        'answers': ['beer', 'whine', 'tea', 'milk', 'coffee', 'water', 'vodka']
+        'answers': [
+          {'text': 'beer', 'score': 8}, 
+          {'text': 'whine', 'score': 7}, 
+          {'text': 'tea', 'score': 3}, 
+          {'text': 'milk', 'score': 2}, 
+          {'text': 'coffee', 'score': 5}, 
+          {'text': 'water', 'score': 0}, 
+          {'text': 'vodka', 'score': 10},
+          ]
       }
     ];
 
     return MaterialApp(
       theme: ThemeData(primaryColor: Colors.green),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Personality Quiz'),
-        ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions,
-              )
-            : Result(_restartQuiz)
-      ),
+        backgroundColor: Colors.orange,
+          appBar: AppBar(
+            title: Text('Personality Quiz'),
+          ),
+          body: _questionIndex < _questions.length
+              ? Quiz(
+                  answerQuestion: _answerQuestion,
+                  questionIndex: _questionIndex,
+                  questions: _questions,
+                )
+              : Result(_totalScore, _restartQuiz)),
     );
   }
 }
