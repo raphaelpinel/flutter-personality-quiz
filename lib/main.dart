@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
 
   _answerQuestion(int score) {
     setState(() {
-      _questionIndex = _questionIndex + 1;
+      _questionIndex ++;
       _totalScore += score;
     });
     print(_questionIndex);
