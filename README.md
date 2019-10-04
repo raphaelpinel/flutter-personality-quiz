@@ -1,5 +1,5 @@
-# personality_quizz
+# personality quiz Flutter App
 
-A personality quiz app build with Flutter
+This is my first app with Flutter. A personality quiz that calculates a score behind the scenes.
 
 ![](personality-quiz-demo.gif)
